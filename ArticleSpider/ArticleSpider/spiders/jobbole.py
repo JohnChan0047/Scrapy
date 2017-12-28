@@ -15,7 +15,7 @@ from ArticleSpider.utils.common import get_md5
 class JobboleSpider(scrapy.Spider):
     name = 'jobbole'
     allowed_domains = ['blog.jobbole.com']
-    start_urls = ['http://blog.jobbole.com/all-posts/page/548/']
+    start_urls = ['http://blog.jobbole.com/all-posts/']
 
     def parse(self, response):
         """
