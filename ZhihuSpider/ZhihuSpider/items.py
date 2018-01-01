@@ -29,10 +29,12 @@ class ZhihuAnswerItem(scrapy.Item):
 
     def get_insert_sql(self):
         insert_sql = """
-                           insert into zhihuanswer(answer_id, author_id, author_name, created_time,
-                           updated_time, question_title, question_id, voteup_count, comment_count, content, crawl_time) VALUES (
-                           %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-                       """
+           insert into zhihuanswer(answer_id, author_id, author_name, created_time,
+           updated_time, question_title, question_id, voteup_count, comment_count, content, crawl_time) VALUES (
+           %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) ON DUPLICATE KEY UPDATE author_name=VALUES (author_name),
+           updated_time=VALUES (updated_time), voteup_count=VALUES (voteup_count), comment_count=VALUES (comment_count),
+           content=VALUES (content)
+       """
 
         params = (self['answer_id'], self['author_id'], self['author_name'], self['created_time'], self['updated_time'],
                   self['question_title'], self['question_id'], self['voteup_count'], self['comment_count'],
