@@ -53,7 +53,7 @@ class JsonExporterPipeline(object):
 class MysqlPipeline(object):
     # 同步存储
     def __init__(self):
-        self.conn = MySQLdb.connect('127.0.0.1', 'root', 'zhanshi123', 'jobbolearticle_spider', charset='utf8', use_unicode=True)
+        self.conn = MySQLdb.connect('127.0.0.1', 'root', '*******', 'jobbolearticle_spider', charset='utf8', use_unicode=True)
         self.cursor = self.conn.cursor()
 
     def process_item(self, item, spider):

@@ -93,18 +93,18 @@ class JobBoleArticleItem(scrapy.Item):
     comments = scrapy.Field()
     content = scrapy.Field()
 
-    # def get_insert_sql(self):
-    #     insert_sql = """
-    #         insert into jobbolearticle(title, url, create_date, fav_nums, front_image_url, front_image_path,
-    #         post_nums, comment_nums, tags, comments, content)
-    #         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) ON DUPLICATE KEY UPDATE content=VALUES(fav_nums)
-    #     """
-    #
-    #     fron_image_url = ""
-    #
-    #     if self["front_image_url"]:
-    #         fron_image_url = self["front_image_url"][0]
-    #     params = (self["title"], self["url"], self["create_date"], self["fav_nums"],
-    #               fron_image_url, self["front_image_path"], self["post_nums"], self["comment_nums"],
-    #               self["tags"], self['comments'], self["content"])
-    #     return insert_sql, params
+    def get_insert_sql(self):
+        insert_sql = """
+            insert into jobbolearticle(title, url, create_date, fav_nums, front_image_url, front_image_path,
+            post_nums, comment_nums, tags, comments, content)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) ON DUPLICATE KEY UPDATE content=VALUES(fav_nums)
+        """
+
+        fron_image_url = ""
+
+        if self["front_image_url"]:
+            fron_image_url = self["front_image_url"][0]
+        params = (self["title"], self["url"], self["create_date"], self["fav_nums"],
+                  fron_image_url, self["front_image_path"], self["post_nums"], self["comment_nums"],
+                  self["tags"], self['comments'], self["content"])
+        return insert_sql, params

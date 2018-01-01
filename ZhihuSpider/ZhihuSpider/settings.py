@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
-import os
 
-# Scrapy settings for ArticleSpider project
+# Scrapy settings for ZhihuSpider project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -10,14 +9,14 @@ import os
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'ArticleSpider'
+BOT_NAME = 'ZhihuSpider'
 
-SPIDER_MODULES = ['ArticleSpider.spiders']
-NEWSPIDER_MODULE = 'ArticleSpider.spiders'
+SPIDER_MODULES = ['ZhihuSpider.spiders']
+NEWSPIDER_MODULE = 'ZhihuSpider.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'ArticleSpider (+http://www.yourdomain.com)'
+#USER_AGENT = 'ZhihuSpider (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
@@ -48,13 +47,13 @@ ROBOTSTXT_OBEY = False
 # Enable or disable spider middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'ArticleSpider.middlewares.ArticlespiderSpiderMiddleware': 543,
+#    'ZhihuSpider.middlewares.ZhihuspiderSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'ArticleSpider.middlewares.MyCustomDownloaderMiddleware': 543,
+#    'ZhihuSpider.middlewares.MyCustomDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -66,19 +65,9 @@ ROBOTSTXT_OBEY = False
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'ArticleSpider.pipelines.ArticleImagePipeline': 1,
-   # 'scrapy.pipelines.images.ImagesPipeline': 1, # 配置图片自动下载。参数越小，代表越先执行
-   'ArticleSpider.pipelines.MysqlPipeline': 300,
+   # 'ZhihuSpider.pipelines.JsonWithEncodingPipeline': 300,
+   'ZhihuSpider.pipelines.MysqlPipeline': 300,
 }
-# 获取图片下载URL
-IMAGES_URLS_FIELD = 'front_image_url'
-# 图片存放路径
-project_dir = os.path.abspath(os.path.dirname(__file__))
-IMAGES_STORE = os.path.join(project_dir, 'IMAGES')
-
-# 过滤图片
-# IMAGES_MIN_HEIGHT = 100
-# IMAGES_MIN_WIDTH = 100
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
@@ -102,6 +91,6 @@ IMAGES_STORE = os.path.join(project_dir, 'IMAGES')
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
 MYSQL_HOST = '127.0.0.1'
-MYSQL_DBNAME = 'jobbolearticle_spider'
+MYSQL_DBNAME = 'zhihu'
 MYSQL_USER = 'root'
-MYSQL_PASSWORD = '******'
+MYSQL_PASSWORD = 'zhanshi123'
